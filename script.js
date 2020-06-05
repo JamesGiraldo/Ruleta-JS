@@ -1,14 +1,22 @@
 const ruleta = document.querySelector("#ruleta");
 ruleta.addEventListener("click",girar);
 dinero = 50;
+
+localStorage.setItem("girar", true);
+
 function girar(){
-    if (dinero >= 20) {
-    	let rand = Math.random()*7200;
-    	sumarPuntos(-20);
-        calcular(rand);
-    }
-    else {
-    	alert("No Te Queda Suficiente Plata");
+    if(localStorage.getItem("girar") == true){
+        if (dinero >= 20) {
+            let rand = Math.random()*7200;
+            sumarPuntos(-20);
+            calcular(rand);
+        }
+        else {
+            alert("No Te Queda Suficiente Plata");
+        }
+        localStorage.setItem("girar", false);
+    }else{
+        alert("No puede volver a girar");
     }
 }
 function sumarPuntos(p){
